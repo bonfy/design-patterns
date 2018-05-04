@@ -23,9 +23,14 @@ class Subject:
         self._observers = set()
 
     def attach(self, observer):
+        if not isinstance(observer, Observer):
+            raise TypeError('Observer Type need to check')
+
+        # self._observers |= {observer}
         self._observers.add(observer)
 
     def detach(self, observer):
+        # self._observers -= {observer}
         self._observers.discard(observer)
 
     def notify(self):
