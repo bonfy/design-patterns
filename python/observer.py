@@ -1,5 +1,4 @@
 # -*- coding:utf-8 -*-
-
 """ Observer
 
 出版者 + 订阅者 = 观察者模式
@@ -14,6 +13,8 @@
 当两个对象之间松耦合，它们依然可以交互，但是不太清楚彼此的细节。
 观察者模式提供了一种对象设计，让 主题 和 观察者 之间松耦合
 """
+
+import abc
 
 
 class Subject:
@@ -32,8 +33,16 @@ class Subject:
             observer.update(self)
 
 
+class Observer(metaclass=abc.ABCMeta):
+
+    @abc.abstractclassmethod
+    def update(self, subject):
+        pass
+
+
 # Example usage
 class Data(Subject):
+
     def __init__(self, name=''):
         super().__init__()
         self.name = name
@@ -49,33 +58,35 @@ class Data(Subject):
         self.notify()
 
 
-class HexViewer:
+class HexViewer(Observer):
 
     def update(self, subject):
-        print(u'HexViewer: Subject %s has data 0x%x' %
-              (subject.name, subject.data))
+        print(
+            u'HexViewer: Subject %s has data 0x%x' %
+            (subject.name, subject.data)
+        )
 
 
-class DecimalViewer:
+class DecimalViewer(Observer):
 
     def update(self, subject):
-        print(u'DecimalViewer: Subject %s has data %d' %
-              (subject.name, subject.data))
+        print(
+            u'DecimalViewer: Subject %s has data %d' %
+            (subject.name, subject.data)
+        )
 
 
 # Example usage...
 def main():
+    # Attach
     data1 = Data('Data 1')
     data2 = Data('Data 2')
     view1 = DecimalViewer()
     view2 = HexViewer()
-
     data1.attach(view1)
     data1.attach(view2)
-
     data2.attach(view1)
     data2.attach(view2)
-
     print(u"Setting Data 1 = 10")
     data1.data = 10
     print(u"Setting Data 2 = 15")
@@ -84,7 +95,7 @@ def main():
     data1.data = 3
     print(u"Setting Data 2 = 5")
     data2.data = 5
-
+    # Detach
     print(u"Detach HexViewer from data1 and data2.")
     data1.detach(view2)
     data2.detach(view2)
@@ -96,7 +107,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-
 ### OUTPUT ###
 # Setting Data 1 = 10
 # DecimalViewer: Subject Data 1 has data 10
