@@ -4,27 +4,24 @@ import (
 	"fmt"
 )
 
-
 type Subject interface {
 	Attach(observer Observer)
 	// Detach(observer Observer)
 	Notify()
-
 }
 
 type Observer interface {
 	Update(state string)
 }
 
-type ConcreteSubject struct{
+type ConcreteSubject struct {
 	observers []Observer
-	State      string
+	State     string
 }
 
 func (self *ConcreteSubject) Attach(observer Observer) {
 	self.observers = append(self.observers, observer)
 }
-
 
 func (self *ConcreteSubject) Notify() {
 	for _, observer := range self.observers {
@@ -33,7 +30,7 @@ func (self *ConcreteSubject) Notify() {
 }
 
 type ConcreteObserver struct {
-	name string
+	name  string
 	state string
 }
 
@@ -42,11 +39,11 @@ func (self *ConcreteObserver) Update(state string) {
 	fmt.Printf("%s State change: %s\n", self.name, self.state)
 }
 
-func main()  {
+func main() {
 	subject := &ConcreteSubject{}
-	subject.Attach(&ConcreteObserver{name:"observer-1"})
-	subject.Attach(&ConcreteObserver{name:"observer-2"})
-	subject.Attach(&ConcreteObserver{name:"observer-3"})
+	subject.Attach(&ConcreteObserver{name: "observer-1"})
+	subject.Attach(&ConcreteObserver{name: "observer-2"})
+	subject.Attach(&ConcreteObserver{name: "observer-3"})
 
 	subject.State = "New State..."
 	subject.Notify()

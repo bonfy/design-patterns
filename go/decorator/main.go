@@ -4,7 +4,6 @@ import (
 	"fmt"
 )
 
-
 type Component interface {
 	Operation() string
 }
@@ -29,11 +28,10 @@ type ConcreteDecoratorB struct {
 }
 
 func (self *ConcreteDecoratorB) Operation() string {
-	return "<B>" + self.component.Operation() + "</B>"	
+	return "<B>" + self.component.Operation() + "</B>"
 }
 
-
-func main(){
+func main() {
 	decorator := &ConcreteDecoratorB{&ConcreteDecoratorA{&ConcreteComponent{}}}
 	result := decorator.Operation()
 
