@@ -8,6 +8,12 @@
 
 类适配器 Adapter 继承（Target 和 Adaptee)
 对象适配器 Adapter 依赖Adaptee 实现 Target接口，
+
+
+Adapter vs Decorator
+
+Adapter   将一个接口转换成另一个接口
+Decorator 不改变接口，但加入责任
 """
 import abc
 
