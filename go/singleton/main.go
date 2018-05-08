@@ -1,10 +1,11 @@
 package singleton
 
-type singleton struct{}
+// Singleton Struct
+type Singleton struct{}
 
-var instance *singleton
+var instance *Singleton
 
 // GetInstance Return the only instance
-func GetInstance() *singleton {
+func GetInstance() *Singleton {
 	return instance
 }
