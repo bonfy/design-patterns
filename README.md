@@ -1,13 +1,13 @@
-# python-design-patterns
+# design-patterns
 
-Python Design Patterns
+Design Patterns
 
 ## 设计原则
 
 `SOLID`原则
 
 - Single responsibility
-- Open-closed
+- Open-closed(类应该对 扩展 开放， 对 修改 关闭)
 - Liskov substitution
 - Interface segregation
 - Dependency inversion
@@ -21,7 +21,6 @@ Python Design Patterns
 - 组合模式:   客户可以将对象的集合以及个别对象一视同仁
 - 观察者模式: 当某个状态变化时，允许一群对象能被通知到
 
-`类应该对 扩展 开放， 对 修改 关闭`
 
 ## 参考
 - [Head First Design Patterns](https://www.amazon.com/Head-First-Design-Patterns-Brain-Friendly/dp/0596007124/ref=sr_1_1?ie=UTF8&qid=1525411011&sr=8-1&keywords=head+first+design+patterns)
